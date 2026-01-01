@@ -1,65 +1,102 @@
-import Image from "next/image";
 
-export default function Home() {
+
+import Link from "next/link"
+import { ArrowRight, Users, Clock, CreditCard, BarChart } from "lucide-react"
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import LogoutButton from "./components/ui/logoutButton";
+
+
+
+export default async function HomePage() {
+  const session = await getServerSession(authOptions);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="container mx-auto px-6 py-16 lg:py-24">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* Logo/Title */}
+          <div className="space-y-4">
+            <h1 className="text-5xl lg:text-6xl font-bold text-foreground">WorkerCMS</h1>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Professional worker management and time tracking system. Track hours, manage payments, and monitor your
+              workforce all in one place.
+            </p>
+          </div>
+{
+  JSON.stringify(session)
+}
+
+<LogoutButton />
+          {/* CTA Button */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href="/admin"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-lg hover:bg-primary/90 transition-colors shadow-lg"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              Go to Dashboard
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+
+      {/* Features Section */}
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
+          {/* Worker Management */}
+          <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+              <Users className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">Worker Management</h3>
+            <p className="text-muted-foreground">
+              Add, edit, and manage your workers with detailed profiles including hourly rates and job titles.
+            </p>
+          </div>
+
+          {/* Time Tracking */}
+          <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+            <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+              <Clock className="w-6 h-6 text-success" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">Time Tracking</h3>
+            <p className="text-muted-foreground">
+              Log work hours with timestamps and notes. Simple start work button for quick time entry.
+            </p>
+          </div>
+
+          {/* Payment Management */}
+          <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+            <div className="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center">
+              <CreditCard className="w-6 h-6 text-warning" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">Payment Tracking</h3>
+            <p className="text-muted-foreground">
+              Track payments with status management, due dates, and payment history for complete financial oversight.
+            </p>
+          </div>
+
+          {/* Analytics */}
+          <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+            <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
+              <BarChart className="w-6 h-6 text-destructive" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">Dashboard Analytics</h3>
+            <p className="text-muted-foreground">
+              View real-time statistics and insights about your workforce, hours logged, and payment status.
+            </p>
+          </div>
         </div>
-      </main>
+      </div>
+
+      {/* Footer */}
+      <footer className="container mx-auto px-6 py-8 border-t border-border">
+        <div className="text-center text-muted-foreground text-sm">
+          <p>WorkerCMS - Built with Next.js and MongoDB</p>
+        </div>
+      </footer>
     </div>
-  );
+  )
 }
