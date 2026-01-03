@@ -60,22 +60,22 @@ export default function ShiftForm({ loading, onSubmit, onCancel,handleChange,for
             Cancel
           </button>
           <button
-            type="submit"
-            disabled={loading}
-            className="flex-1 h-11 px-4 rounded-md bg-primary text-white hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-colors inline-flex items-center justify-center gap-2"
-          >
-            {loading ? (
-              <>
-                <span className="animate-spin">⏳</span>
-                Starting...
-              </>
-            ) : (
-              <>
-                <Clock className="h-4 w-4" />
-                Start Work
-              </>
-            )}
-          </button>
+  type="submit"
+  disabled={loading}
+  className="flex-1 h-11 px-4 rounded-md bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-colors inline-flex items-center justify-center gap-2"
+>
+  {loading ? (
+    <>
+      <span className="animate-spin">⏳</span>
+      Starting...
+    </>
+  ) : (
+    <>
+      <Clock className="h-4 w-4" />
+      Start Work
+    </>
+  )}
+</button>
         </div>
       </form>
     </div>

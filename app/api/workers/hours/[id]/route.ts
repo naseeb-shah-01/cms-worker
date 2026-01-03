@@ -20,15 +20,34 @@ let startOfToday = new Date();
 startOfToday.setHours(0, 0, 0, 0);
 let endOfToday = new Date(startOfToday.getTime() + 24 * 60 * 60 * 1000 - 1);
     await connectToDatabase();
-    const todaySlots: IHour[] = await Hours.find({
-      user: workerId,
-      createdAt: {
-        $gte: startOfToday,
-        $lte: endOfToday
+    const todaySlots: IHour[] = await Hours.aggregate([
+
+      {
+        $match: {
+          user: workerId,
+          closeTime:{$ne:null}
+        },
+      },
+      {
+        $group:{
+     _id:     { 
+            $dateToString: { 
+              format: "%Y-%m-%d", 
+              date: "$createdAt" 
+            } 
+          },
+          totalHours: { $sum: {$round:[ {
+            $divide: [
+              { $subtract: ["$closeTime", "$openTime"] },
+              1000 * 60 * 60
+            ]
+          } ,2]}},
+          entries: { $push: "$$ROOT" }
+        },
       }
-    }).sort({closeTime:1}).exec();
+    ])
     return NextResponse.json(
-      { slots: todaySlots },
+      { data: todaySlots },
       { status: 200 }
     );
 
