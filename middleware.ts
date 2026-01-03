@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 export default async function middleware(req: NextRequest) {
-  console.log("🛑 Middleware hit:", req.nextUrl.pathname);
+  
 
   const token = await getToken({
     req,
@@ -21,16 +21,16 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (pathname.startsWith("/admin") && token.role !== "ADMIN") {
-    console.log("🚫 Not admin");
+    
     return NextResponse.redirect(new URL("/unauthorized", req.url));
   }
 
   if (pathname.startsWith("/worker") && token.role !== "WORKER") {
-    console.log("🚫 Not worker");
+    
     return NextResponse.redirect(new URL("/unauthorized", req.url));
   }
 
-  console.log("✅ Access granted");
+  
   return NextResponse.next();
 }
 

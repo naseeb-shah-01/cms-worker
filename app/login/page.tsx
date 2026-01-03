@@ -4,7 +4,7 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
@@ -32,9 +32,15 @@ export default function LoginPage() {
       setError("Invalid email or password");
       return;
     }
+    const session = await getSession();
 
-    // redirect handled by middleware based on role
-    router.push("/");
+    setLoading(false);
+
+    if (session?.user?.role === "WORKER") {
+      router.push("/worker/slot");
+    } else {
+      router.push("/admin/workers"); 
+    }
   };
 
   return (

@@ -23,9 +23,7 @@ export default async function HomePage() {
               workforce all in one place.
             </p>
           </div>
-{
-  JSON.stringify(session)
-}
+
 
 <LogoutButton />
           {/* CTA Button */}
@@ -94,7 +92,7 @@ export default async function HomePage() {
       {/* Footer */}
       <footer className="container mx-auto px-6 py-8 border-t border-border">
         <div className="text-center text-muted-foreground text-sm">
-          <p>WorkerCMS - Built with Next.js and MongoDB</p>
+          <p>WorkerCMS - Deen Shah Scion</p>
         </div>
       </footer>
     </div>
