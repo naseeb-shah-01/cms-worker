@@ -39,7 +39,7 @@ export const authOptions: NextAuthOptions = {
         if (!isPasswordValid) {
           throw new Error("Invalid credentials");
         }
-console.log(user,"---user---")
+
         return {
           id: user._id.toString(),
           name: user.name,

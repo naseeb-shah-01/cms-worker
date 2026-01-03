@@ -21,13 +21,11 @@ const WorkerHoursPage = () => {
             className="border rounded-lg p-4 space-y-4"
           >
             {/* Day */}
-            <DayStrip day={day?._id} />
+            <DayStrip day={day?._id} totalHours={day?.totalHours} />
 
             {/* Total Hours */}
-            <div className="text-sm sm:text-base font-semibold">
-              Total Hours:{" "}
-              <span className="font-bold">{day.totalHours}</span>
-            </div>
+           
+            
 
             {/* Shift Cards */}
             <div className="flex gap-3 overflow-x-auto sm:overflow-visible sm:flex-wrap">

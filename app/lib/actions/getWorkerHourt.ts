@@ -16,7 +16,7 @@ export async function getWorkerHours(workerId: string) {
 }
 
 export const getTodayWorkerHours = async (workerId: string) => {
- console.log("getTodayWorkerHours called with workerId:", workerId);
+ 
  
   await connectToDatabase();
   const startOfToday = new Date();
@@ -24,7 +24,7 @@ export const getTodayWorkerHours = async (workerId: string) => {
 
   const endOfToday = new Date();
   endOfToday.setHours(23, 59, 59, 999);
-console.log(workerId,typeof workerId)
+
   const todayHours = await hours.findOne({
     user: workerId,
     
