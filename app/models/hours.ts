@@ -17,11 +17,11 @@ const HourSchema: Schema = new Schema({
     required: true,
   },
   openTime: {
-    type: String,
+    type: Date,
     required: true,
   },
   closeTime: {
-    type: String,
+    type: Date,
     
   },
   remark: {

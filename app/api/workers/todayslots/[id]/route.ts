@@ -5,10 +5,10 @@ import mongoose from "mongoose";
 
 export  async function GET(
   request: Request,
-  { params }: { params: { id: string } }
-) {
+  { params }:any
+): Promise<NextResponse> {
   try {
-    const userDetails= await params;
+    const userDetails= await params; 
     if (!userDetails?.id) {
       return NextResponse.json(
         { message: "Worker ID is required",params:params },

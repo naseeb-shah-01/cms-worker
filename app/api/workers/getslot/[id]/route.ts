@@ -6,7 +6,8 @@ import Hours, { IHour } from "@/app/models/hours";
 
 export async function GET(
   request: NextRequest,
-  { params }: any
+  { params }: { params: Promise<{ id: string }> }
+
 ) {
   try {
     const workerId =  await params;
@@ -23,7 +24,10 @@ export async function GET(
   
   if (!workerHour) {
     // Handle case where no hours found
-    return null; // or throw an error
+  return   NextResponse.json(
+      { hours: {} },
+      { status: 200 }
+    );
   }
   
   // Format single document

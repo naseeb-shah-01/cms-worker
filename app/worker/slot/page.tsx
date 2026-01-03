@@ -4,7 +4,7 @@
 import CreateHoursHeader from "@/app/components/shift/CreateHoursHeader"
 import { useShiftManagement } from "@/app/components/shift/hooks/useShiftManagement"
 import ShiftForm from "@/app/components/shift/ShiftForm"
-import ShiftStatusCard from "@/app/components/shift/ShiftStatusCard"
+import ShiftStatusCard from "@/app/components/ui/ShiftStatusCard"
 import StatusMessage from "@/app/components/shift/StatusMassage"
 import { LoadingSpinner } from "@/app/components/ui/LoadingSpinner"
 

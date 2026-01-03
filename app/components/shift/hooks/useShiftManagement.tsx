@@ -26,7 +26,7 @@ export const useShiftManagement = () => {
   const fetchTodaySlot = async () => {
     setIsCheckingSlot(true)
     try {
-      const res = await fetch(`/api/workers/today-slots/${session?.user.id}`)
+      const res = await fetch(`/api/workers/todayslots/${session?.user.id}`)
       if (res.ok) {
         const data = await res.json()
         setSlot(data.slots||[])
