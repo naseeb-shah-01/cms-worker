@@ -21,7 +21,7 @@ const WorkerHoursPage = () => {
             className="border rounded-lg p-4 space-y-4"
           >
             {/* Day */}
-            <DayStrip day={day?._id} totalHours={day?.totalHours} />
+            <DayStrip day={day?._id} totalHours={day?.totalHours} noShift={day?.entries?.length||0} />
 
             {/* Total Hours */}
            

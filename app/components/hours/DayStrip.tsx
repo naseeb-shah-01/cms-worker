@@ -1,9 +1,10 @@
 interface DayStripProps {
     day: string | Date;
     totalHours?: number;
+    noShift?: number;
   }
   
-  export const DayStrip = ({ day, totalHours }: DayStripProps) => {
+  export const DayStrip = ({ day, totalHours,noShift }: DayStripProps) => {
     const date = new Date(day);
     const weekday = date.toLocaleDateString("en-US", { weekday: "short" });
     const dayNumber = date.getDate();
@@ -27,7 +28,15 @@ interface DayStripProps {
           </span>
         </div>
   
-        {/* Hours */}
+        {/* No of shifts */}
+        <div className="flex items-center space-x-1">
+          <span className={`font-bold ${
+            isToday ? "text-black" : "text-gray-900"
+          }`}>
+            {noShift || 0}
+          </span>
+          <span className="text-gray-600 text-xs">Shifts</span> 
+          </div>
         <div className="flex items-center space-x-1">
           <span className={`font-bold ${
             isToday ? "text-black" : "text-gray-900"
