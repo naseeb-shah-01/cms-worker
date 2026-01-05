@@ -20,7 +20,7 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true },
     phone: { type: String },
     hourlyRate: { type: Number},
-    jotTitle: { type: String },
+    jobTitle: { type: String },
     role: { type: String, default: "WORKER" },
     isActive: { type: Boolean, default: true },
     password: String,

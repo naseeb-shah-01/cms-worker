@@ -1,11 +1,12 @@
 import { Clock, CheckCircle2, LogOut } from "lucide-react"
 
 
-import { WorkerSlot } from "@/app/types/worker"
+
 import { calculateHoursWorked, formatTime } from "@/app/utils/timeUtils"
+import { IHour } from "@/app/models/hours"
 
 interface ShiftStatusCardProps {
-  slot: WorkerSlot
+  slot: IHour
   onEndShift: () => void
   loading: boolean
 }
@@ -13,13 +14,13 @@ interface ShiftStatusCardProps {
 
 
 interface ShiftStatusCardProps {
-  slot: WorkerSlot
+  slot: IHour
   onEndShift: () => void
   loading: boolean
 }
 
 export default function ShiftStatusCard({ slot, onEndShift, loading }: ShiftStatusCardProps) {
-  const hoursWorked = calculateHoursWorked(slot.openTime, slot.closeTime)
+  const hoursWorked = calculateHoursWorked(+slot.openTime, +slot.closeTime)
 
   if (slot.closeTime) {
     return (
@@ -30,10 +31,10 @@ export default function ShiftStatusCard({ slot, onEndShift, loading }: ShiftStat
             <h3 className="font-semibold text-foreground">Shift Completed</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
               <p className="text-sm text-foreground">
-                <span className="font-medium">Started:</span> {formatTime(slot.openTime)}
+                <span className="font-medium">Started:</span> {formatTime(+slot.openTime)}
               </p>
               <p className="text-sm text-foreground">
-                <span className="font-medium">Ended:</span> {formatTime(slot.closeTime)}
+                <span className="font-medium">Ended:</span> {formatTime(+slot.closeTime)}
               </p>
               {slot.remark && (
                 <p className="text-sm text-foreground col-span-full">
@@ -57,7 +58,7 @@ export default function ShiftStatusCard({ slot, onEndShift, loading }: ShiftStat
           </div>
           <div className="space-y-1">
             <p className="text-sm text-foreground">
-              <span className="font-medium">Started:</span> {formatTime(slot.openTime)}
+              <span className="font-medium">Started:</span> {formatTime(+slot.openTime)}
             </p>
             {hoursWorked && (
               <p className="text-sm text-foreground">

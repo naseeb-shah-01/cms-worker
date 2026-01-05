@@ -50,7 +50,7 @@ export default function CreateHoursPage() {
         {
           slot?.map((s) => <ShiftStatusCard
             slot={s}
-            onEndShift={() => handleEndShift(s._id)}
+            onEndShift={() => handleEndShift(s?._id?.toString())}
             loading={loading}
           />)
         }

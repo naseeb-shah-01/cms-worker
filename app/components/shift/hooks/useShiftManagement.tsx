@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
-import { WorkerSlot } from "@/app/types/worker"
+import { IHour } from "@/app/models/hours"
+
 
 
 export const useShiftManagement = () => {
@@ -12,7 +13,7 @@ export const useShiftManagement = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
-  const [slot, setSlot] = useState<WorkerSlot[] | null>(null)
+  const [slot, setSlot] = useState<IHour[] | null>(null)
   const [isCheckingSlot, setIsCheckingSlot] = useState(true)
 
   useEffect(() => {

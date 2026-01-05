@@ -36,7 +36,7 @@ export default  function CreateWorkerPage() {
     setSuccess("")
 
     try {
-      const res = await fetch("/api/admin/workers", {
+      const res = await fetch("/api/admin/workers/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -223,7 +223,7 @@ export default  function CreateWorkerPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 h-11 px-4 rounded-md bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-colors inline-flex items-center justify-center gap-2"
+                className="flex-1 h-11 px-4 rounded-md bg-[black] text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-colors inline-flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

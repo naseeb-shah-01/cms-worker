@@ -32,4 +32,4 @@ const HourSchema: Schema = new Schema({
   timestamps: true,
 });
 
-export default mongoose.models.Hour || mongoose.model<IHour>('Hour', HourSchema);
+export default mongoose?.models?.Hour || mongoose.model<IHour>('Hour', HourSchema);
