@@ -16,7 +16,10 @@ import {
   MessageSquare,
   Search,
   ChevronRight,
-  RefreshCw
+  RefreshCw,
+  Plus,
+  Pickaxe,
+  Contact
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -127,7 +130,13 @@ export default function ManagerDashboard() {
   const handleViewWorker = (workerId: string) => {
     router.push(`/admin/workers/view/${workerId}`);
   };
-
+  // Event handlers
+  const handleAddPayment = () => {
+    router.push(`/admin/workers/payment/add`);
+  };
+  const handleAddWorker = () => {
+    router.push(`/admin/workers/create`);
+  };
   const handleEditWorker = (workerId: string) => {
     router.push(`/workers/${workerId}/edit`);
   };
@@ -230,23 +239,50 @@ export default function ManagerDashboard() {
               Overview of all workers, hours, and costs for {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleRefresh}
-              disabled={refreshing}
-              className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium flex items-center gap-2 disabled:opacity-50"
-            >
-              <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
-              {refreshing ? 'Refreshing...' : 'Refresh'}
-            </button>
-            <button 
-              onClick={handleExportData}
-              className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium flex items-center gap-2"
-            >
-              <Download className="w-4 h-4" />
-              Export
-            </button>
-          </div>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+  {/* Add Payment */}
+  <button
+    onClick={handleAddPayment}
+    className="p-2 sm:px-4 sm:py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+    title="Add Payment"
+  >
+    <DollarSign className="w-4 h-4 sm:w-4 sm:h-4" />
+    <span className="hidden sm:inline whitespace-nowrap">Add Payment</span>
+  </button>
+
+  {/* Add Worker */}
+  <button
+    onClick={handleAddWorker}
+    className="p-2 sm:px-4 sm:py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+    title="Add Worker"
+  >
+    <Contact className="w-4 h-4 sm:w-4 sm:h-4" />
+    <span className="hidden sm:inline whitespace-nowrap">Add Worker</span>
+  </button>
+
+  {/* Refresh */}
+  <button
+    onClick={handleRefresh}
+    disabled={refreshing}
+    className="p-2 sm:px-4 sm:py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+    title="Refresh Data"
+  >
+    <RefreshCw className={`w-4 h-4 sm:w-4 sm:h-4 ${refreshing ? 'animate-spin' : ''}`} />
+    <span className="hidden sm:inline whitespace-nowrap">
+      {refreshing ? 'Refreshing...' : 'Refresh'}
+    </span>
+  </button>
+
+  {/* Export */}
+  <button 
+    onClick={handleExportData}
+    className="p-2 sm:px-4 sm:py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+    title="Export Data"
+  >
+    <Download className="w-4 h-4 sm:w-4 sm:h-4" />
+    <span className="hidden sm:inline whitespace-nowrap">Export</span>
+  </button>
+</div>
         </div>
 
         {/* Search and Filter Bar */}
